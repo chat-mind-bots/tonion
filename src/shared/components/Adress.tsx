@@ -1,7 +1,6 @@
 "use client";
 import { useTonAddress } from "@tonconnect/ui-react";
-
-export const Address = () => {
+const Address = () => {
 	const userFriendlyAddress = useTonAddress();
 	const rawAddress = useTonAddress(false);
 
@@ -14,3 +13,5 @@ export const Address = () => {
 		)
 	);
 };
+
+export default Address;
