@@ -1,20 +1,21 @@
 "use server";
 
-import { registerUser } from "@/shared/actions/user/registerUser";
+import RegisterForm from "@/shared/components/register/register-form";
 import { User } from "@prisma/client";
+import { registerUser } from "@/shared/actions/user/registerUser";
 
-export const Register = async () => {
+const Register = async () => {
 	const onSubmit = async (formData: FormData) => {
-		console.log(formData.get("address"));
-		// const data: Pick<User, "address"> = {
-		// 	address: formData.get("address"),
-		// };
+		"use server";
+		const address = formData.get("address") as string;
+		if (address) {
+			const data: Pick<User, "address"> = {
+				address,
+			};
+			const user = await registerUser(data);
+			console.log(user);
+		}
 	};
-	return <div>SOmething</div>;
-	// return (
-	// 	<form action={onSubmit}>
-	// 		<input type="text" id={"address"} placeholder={"Enter address"} />
-	// 		<button type={"submit"}>Register</button>
-	// 	</form>
-	// );
+	return <RegisterForm register={onSubmit} />;
 };
+export default Register;
