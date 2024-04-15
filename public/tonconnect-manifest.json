@@ -1,7 +1,7 @@
 {
 	"url": "https://localhost:3000",
 	"name": "ton",
-	"iconUrl": "<app-icon-url>",
+	"iconUrl": "",
 	"termsOfUseUrl": "<terms-of-use-url>",
 	"privacyPolicyUrl": "<privacy-policy-url>"
 }
