@@ -1,14 +1,15 @@
-import Image from "next/image";
-import { TonConnectButton } from "@tonconnect/ui-react";
-import WalletInfo from "@/shared/components/WalletInfo";
-import Address from "@/shared/components/Adress";
 import AuthComponent from "@/shared/components/AuthComponent";
+import { Suspense } from "react";
+import Register from "@/shared/components/register";
 
 export default function Home() {
 	return (
 		<div>
 			<p>text</p>
 			<AuthComponent />
+			<Suspense fallback={<div>DOWNLOADS</div>}>
+				<Register />
+			</Suspense>
 		</div>
 	);
 }
