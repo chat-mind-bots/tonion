@@ -7,7 +7,7 @@ import WalletInfo from "@/shared/components/wallet/WalletInfo";
 
 const AuthComponent = () => {
 	return (
-		<div>
+		<div className={"text-telegram-text"}>
 			<Address />
 			<WalletInfo />
 			<TonConnectButton />

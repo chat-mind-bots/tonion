@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import { Providers } from "@/app/providers";
+import clsx from "clsx";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,12 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={inter.className}>
+			<body
+				className={clsx(
+					inter.className,
+					"bg-colors-telegram-background-secondary"
+				)}
+			>
 				<Providers>{children}</Providers>
 			</body>
 		</html>
