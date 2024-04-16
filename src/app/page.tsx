@@ -1,4 +1,4 @@
-import AuthComponent from "@/shared/components/AuthComponent";
+import AuthComponent from "@/shared/components/auth";
 import { Suspense } from "react";
 import Register from "@/shared/components/register";
 
