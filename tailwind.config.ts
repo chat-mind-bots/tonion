@@ -30,9 +30,9 @@ const config: Config = {
 				"telegram-button-text": "var(--telegram-button-text-color)",
 				"telegram-button-background-secondary":
 					"var(--telegram-secondary-bg-color)",
+				"telegram-accent-text": "var(--telegram-accent-text-color)",
 
 				//not tested
-				"telegram-accent-text": "var(--telegram-theme-accent-text-color)",
 				"telegram-destructive-text": "var(--telegram-destructive-text-color)",
 				"telegram-header-bg": "var(--telegram-header-bg-color)",
 				"telegram-section-bg": "var(--telegram-section-bg-color)",

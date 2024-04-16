@@ -15,11 +15,6 @@ export default function Home() {
 			</Typography>
 			Market Item
 			<MarketItem title={"test"} />
-			<div>123</div>
-			<div>123</div>
-			<div>123</div>
-			<div>123</div>
-			<div>123</div>
 			<Suspense fallback={<div>DOWNLOADS</div>}>
 				<Register />
 			</Suspense>
