@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { TonConnectUIProvider } from "@tonconnect/ui-react";
+import Script from "next/script";
 import { Providers } from "@/app/providers";
 
 const inter = Inter({ subsets: ["latin"] });
