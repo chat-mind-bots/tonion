@@ -4,18 +4,22 @@ import clsx from "clsx";
 type TypographyVariant = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div";
 interface TypographyProps {
 	variant?: TypographyVariant;
+	bold?: boolean;
 	children?: string;
 	className?: string;
 }
 const Typography = ({
 	variant = "div",
+	bold = false,
 	children,
 	className,
+	...others
 }: TypographyProps) => {
 	return React.createElement(
 		variant,
 		{
-			className: clsx(className),
+			className: clsx(className, { "font-bold": bold }),
+			...others,
 		},
 		children
 	);

@@ -8,13 +8,13 @@ import clsx from "clsx";
 
 export default function Home() {
 	return (
-		<Layout className={"text-colors-telegram-accent-text h-viewport"}>
+		<Layout className={"text-colors-telegram-text h-viewport"}>
 			<AuthComponent />
-			<Typography variant={"h1"} className={clsx("top-2")}>
-				testzxc
-			</Typography>
-			Market Item
-			<MarketItem title={"test"} />
+			Market Items
+			<MarketItem title={"test"} description={"Покупай DUREV сука"} />
+			<MarketItem title={"test"} description={"Покупай DUREV сука"} />
+			<MarketItem title={"test"} description={"Покупай DUREV сука"} />
+			<MarketItem title={"test"} description={"Покупай DUREV сука"} />
 			<Suspense fallback={<div>DOWNLOADS</div>}>
 				<Register />
 			</Suspense>
