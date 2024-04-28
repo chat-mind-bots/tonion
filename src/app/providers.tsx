@@ -17,12 +17,12 @@ export function Providers({ children }: { children: React.ReactNode }) {
 			language="en"
 			uiPreferences={{ theme: "SYSTEM" }}
 		>
-            <BackendTokenContext.Provider value={{ token, setToken }}>
-			<Script
-				src="https://telegram.org/js/telegram-web-app.js"
-				strategy={"beforeInteractive"}
-			/>
-			{children}
+			<BackendTokenContext.Provider value={{ token, setToken }}>
+				<Script
+					src="https://telegram.org/js/telegram-web-app.js"
+					strategy={"beforeInteractive"}
+				/>
+				{children}
 			</BackendTokenContext.Provider>
 		</TonConnectUIProvider>
 	);
