@@ -15,11 +15,13 @@ datasource db {
 
 model User {
   id        String   @id @default(cuid())
-  address   String   @db.VarChar(255)
+  address   String   @unique @db.VarChar(255)
   stores    Store[]
   orders    Order[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@unique([id, address])
 }
 
 model Store {
