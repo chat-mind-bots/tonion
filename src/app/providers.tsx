@@ -1,6 +1,7 @@
 "use client";
 
 import { TonConnectUIProvider } from "@tonconnect/ui-react";
+import Script from "next/script";
 import { createContext, useState } from "react";
 
 export const BackendTokenContext = createContext<{
@@ -16,8 +17,12 @@ export function Providers({ children }: { children: React.ReactNode }) {
 			language="en"
 			uiPreferences={{ theme: "SYSTEM" }}
 		>
-			<BackendTokenContext.Provider value={{ token, setToken }}>
-				{children}
+            <BackendTokenContext.Provider value={{ token, setToken }}>
+			<Script
+				src="https://telegram.org/js/telegram-web-app.js"
+				strategy={"beforeInteractive"}
+			/>
+			{children}
 			</BackendTokenContext.Provider>
 		</TonConnectUIProvider>
 	);
