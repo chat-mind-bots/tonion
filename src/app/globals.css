@@ -2,31 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    --foreground-rgb: 0, 0, 0;
-    --background-start-rgb: 214, 219, 220;
-    --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
     :root {
-        --foreground-rgb: 255, 255, 255;
-        --background-start-rgb: 0, 0, 0;
-        --background-end-rgb: 0, 0, 0;
+        --telegram-bg-color: var(--tg-theme-bg-color, #17212b);
+        --telegram-secondary-bg-color: var(--tg-theme-secondary-bg-color, #ffffff);
+        --telegram-accent-text-color:  var(--tg-theme-accent-text-color, #6ab2f2);
+        --telegram-destructive-text-color:  var(--tg-theme-destructive-text-color, #ec3942);
+        --telegram-header-bg-color:  var(--tg-theme-header-bg-color, #17212b);
+        --telegram-section-bg-color:  var(--tg-theme-section-bg-color, #17212b);
+        --telegram-section-header-text-color:  var(--tg-theme-section-header-text-color, #6ab3f3);
+        --telegram-subtitle-text-color:  var(--tg-theme-subtitle-text-color, #708499);
+        --telegram-text-color: var(--tg-theme-text-color, #000000);
+        --telegram-hint-color: var(--tg-theme-hint-color, #707579);
+        --telegram-link-color: var(--tg-theme-link-color, #3390ec);
+        --telegram-button-color: var(--tg-theme-button-color, #3390ec);
+        --telegram-button-text-color: var(--tg-theme-button-text-color, #ffffff);
     }
-}
 
-body {
-    color: rgb(var(--foreground-rgb));
-    background: linear-gradient(
-            to bottom,
-            transparent,
-            rgb(var(--background-end-rgb))
-    ) rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-    .text-balance {
-        text-wrap: balance;
+    html {
+        @apply font-sans;
     }
 }
