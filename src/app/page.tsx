@@ -5,6 +5,7 @@ import Layout from "@/shared/layout";
 import MarketItem from "@/shared/components/market/item";
 import Typography from "@/shared/components/core/typography";
 import clsx from "clsx";
+import { GetUser } from "@/shared/components/get-user";
 
 export default function Home() {
 	return (
@@ -17,6 +18,9 @@ export default function Home() {
 			<MarketItem title={"test"} description={"Покупай DUREV сука"} />
 			<Suspense fallback={<div>DOWNLOADS</div>}>
 				<Register />
+			</Suspense>
+			<Suspense fallback={<div>User Download</div>}>
+				<GetUser />
 			</Suspense>
 		</Layout>
 	);

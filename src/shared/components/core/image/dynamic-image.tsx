@@ -40,7 +40,7 @@ export const DynamicImage: FC<IDynamicImageProps> = ({
 	return (
 		<>
 			<Image
-				src={`${name}.${ext}`}
+				src={`/${name}.${ext}`}
 				alt={alt}
 				{...additionalProps}
 				width={width}
