@@ -18,7 +18,7 @@ const MarketItem = ({ title, description }: MarketItemProps) => {
 			<div className={clsx("flex", "gap-[14px]")}>
 				<div className={clsx("w-[72px]", "h-[72px]")}>
 					<DynamicPng
-						name={"https://localhost:3000/pavel"}
+						name={"pavel"}
 						height={400}
 						width={720}
 						alt={"test"}
