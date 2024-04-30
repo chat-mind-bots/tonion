@@ -3,7 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/app/providers";
 import clsx from "clsx";
-import { Header } from "@/shared/components/header";
+import { Header } from "@/shared/components/core/header";
+import { Navigation } from "@/shared/components/core/navigation";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,12 +24,18 @@ export default function RootLayout({
 			<body
 				className={clsx(
 					inter.className,
-					"bg-colors-telegram-background-secondary"
+					"bg-colors-telegram-background",
+					"min-h-screen"
 				)}
 			>
+				<Script
+					src="https://telegram.org/js/telegram-web-app.js"
+					strategy={"afterInteractive"}
+				/>
 				<Providers>
 					<Header />
 					{children}
+					<Navigation />
 				</Providers>
 			</body>
 		</html>

@@ -10,8 +10,9 @@ export const login = async (address: string) => {
 	if (!user) {
 		user = await createUser({ address });
 	}
-	const session = await encrypt({ user, expires });
 
+	const session = await encrypt({ user, expires });
+	console.log("session: ", session);
 	cookies().set("session", session, { expires, httpOnly: true });
-	return "Success";
+	return session;
 };
