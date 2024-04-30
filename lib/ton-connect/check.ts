@@ -15,7 +15,6 @@ import { User } from "@prisma/client";
 import { login } from "../auth/login";
 
 async function check(walletInfo: Wallet) {
-	console.log(walletInfo);
 	if (!walletInfo?.connectItems?.tonProof) {
 		throw "No tonProof 1 ";
 	}

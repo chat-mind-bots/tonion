@@ -13,7 +13,6 @@ const Register = async () => {
 				address,
 			};
 			const user = await registerUser(data);
-			console.log(user);
 		}
 	};
 	return <RegisterForm register={onSubmit} />;

@@ -5,12 +5,15 @@ import {
 } from "@/shared/components/core/navigation/navigationLink";
 import clsx from "clsx";
 import { PortfolioSvg } from "@/shared/components/core/navigation/icons/portfolioIcon";
+import { useTonAddress } from "@tonconnect/ui-react";
 
 export const Navigation = () => {
+	const address = useTonAddress();
+
 	const links: NavigationLinkProps[] = [
 		{
 			alt: "portfolio",
-			href: "portfolio",
+			href: "/portfolio",
 			displayName: "Portfolio",
 			icon: (
 				<PortfolioSvg
@@ -23,6 +26,7 @@ export const Navigation = () => {
 					)}
 				/>
 			),
+			isDisabled: !address,
 		},
 		{
 			alt: "market",
@@ -42,7 +46,7 @@ export const Navigation = () => {
 		},
 		{
 			alt: "orders",
-			href: "orders",
+			href: "/orders",
 			displayName: "My Orders",
 			icon: (
 				<PortfolioSvg
@@ -55,6 +59,7 @@ export const Navigation = () => {
 					)}
 				/>
 			),
+			isDisabled: !address,
 		},
 	];
 

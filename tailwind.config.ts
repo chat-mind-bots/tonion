@@ -32,7 +32,6 @@ const config: Config = {
 					"var(--telegram-secondary-bg-color)",
 				"telegram-accent-text": "var(--telegram-accent-text-color)",
 
-				//not tested
 				"telegram-destructive-text": "var(--telegram-destructive-text-color)",
 				"telegram-header-bg": "var(--telegram-header-bg-color)",
 				"telegram-section-bg": "var(--telegram-section-bg-color)",
