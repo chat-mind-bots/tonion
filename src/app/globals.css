@@ -20,7 +20,9 @@
         --telegram-button-color: var(--tg-theme-button-color);
         --telegram-button-text-color: var(--tg-theme-button-text-color);
     }
-
+    body {
+        color: var(--telegram-text-color);
+    }
     html {
         @apply font-sans;
     }
