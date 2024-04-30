@@ -68,7 +68,7 @@ export const Navigation = () => {
 			className={clsx(
 				"w-full",
 				"fixed",
-				"bg-colors-telegram-section-bg-color",
+				"bg-colors-telegram-background",
 				"bottom-0",
 				"flex",
 				"items-center",

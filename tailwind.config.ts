@@ -16,8 +16,8 @@ const config: Config = {
 			},
 		},
 		height: {
-			viewportStable: "var(--tg-viewport-stable-height)",
-			viewport: "var(--tg-viewport-height)",
+			viewportStable: "var(--telegram-viewport-stable-height)",
+			viewport: "var(--telegram-viewport-height)",
 		},
 		colors: {
 			colors: {
@@ -56,8 +56,7 @@ const config: Config = {
 			"telegram-destructive-text": "var(--telegram-destructive-text-color)",
 			"telegram-header-bg": "var(--telegram-header-bg-color)",
 			"telegram-section-bg": "var(--telegram-section-bg-color)",
-			"telegram-section-header-text":
-				"var(--telegram-section-header-text-color)",
+			"telegram-section-header-text": "var(--telegram-section-header-text-color)",
 			"telegram-subtitle-text": "var(--telegram-theme-subtitle-text-color)",
 		},
 	},

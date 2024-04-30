@@ -2,6 +2,6 @@
 
 import { getStoresMy } from "../../../../lib/store/getStoresMy";
 
-export const getMyStores = async () => {
-	return getStoresMy();
+export const getMyStores = async (limit?: number) => {
+	return getStoresMy(limit);
 };
