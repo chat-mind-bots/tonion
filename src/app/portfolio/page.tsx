@@ -16,7 +16,7 @@ export default function Portfolio() {
 			<ContentBlock isBorderBottom isBorderTop>
 				<PageTitle title={"My Stores"} />
 				<Suspense fallback={<Loader />}>
-					<MyStores />
+					<MyStores limit={3} />
 				</Suspense>
 			</ContentBlock>
 
