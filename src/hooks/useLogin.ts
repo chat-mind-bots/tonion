@@ -38,7 +38,10 @@ export const useLogin = () => {
 				wallet.connectItems?.tonProof &&
 				"proof" in wallet.connectItems.tonProof
 			) {
-				loginUI(wallet.account.address);
+				loginUI(
+					wallet.account.address,
+					wallet.connectItems.tonProof.proof.payload
+				);
 			}
 			if (!wallet) {
 				logoutUI();

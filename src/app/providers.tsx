@@ -15,7 +15,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
 			manifestUrl="https://ton-connect.github.io/demo-dapp-with-react-ui/tonconnect-manifest.json" //TODO: fix URL
 			language="en"
 			uiPreferences={{ theme: "SYSTEM" }}
-			restoreConnection={true}
+			// restoreConnection={true}
 		>
 			<BackendTokenContext.Provider value={{ token, setToken }}>
 				{children}

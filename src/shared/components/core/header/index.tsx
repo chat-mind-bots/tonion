@@ -4,7 +4,7 @@ import { DynamicPng } from "@/shared/components/core/image/dynamic-png";
 
 export const Header = () => {
 	return (
-		<header className={clsx("flex justify-between items-center p-2")}>
+		<header className={clsx("flex justify-between items-center p-4 ")}>
 			<DynamicPng
 				name={"logo"}
 				alt={"logo"}
