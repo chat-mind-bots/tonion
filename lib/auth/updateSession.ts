@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { decrypt, encrypt } from "./crypt";
+import { decrypt, encrypt } from "../session/crypt";
 
 export const updateSession = async (request: NextRequest) => {
 	const session = request.cookies.get("session")?.value;

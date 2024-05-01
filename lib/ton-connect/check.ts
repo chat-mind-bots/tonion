@@ -7,11 +7,6 @@ import {
 	SignatureVerify,
 } from "./tonProof";
 import axios from "axios";
-import { cookies } from "next/headers";
-import { encrypt } from "../auth/crypt";
-import { getUser } from "../user/get.user";
-import { createUser } from "../user/create.user";
-import { User } from "@prisma/client";
 import { login } from "../auth/login";
 
 async function check(walletInfo: Wallet) {
