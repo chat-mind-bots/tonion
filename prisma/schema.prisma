@@ -18,6 +18,7 @@ model User {
   address   String   @unique @db.VarChar(255)
   stores    Store[]
   orders    Order[]
+  session   Session?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -129,4 +130,11 @@ enum Status {
   AWAIT_APPROVAL
   DONE
   REJECTED
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @unique
+  expiredAt DateTime
 }

@@ -3,7 +3,7 @@
 import { Prisma } from "@prisma/client";
 import prisma from "../prisma";
 import { getStoreById } from "./getStoreById";
-import { getSession } from "../auth/getSession";
+import { getSession } from "../session/getSession";
 
 export const createStore = async (
 	storeDto: Omit<Prisma.StoreCreateInput, "owner">

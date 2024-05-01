@@ -9,17 +9,14 @@ export const BackendTokenContext = createContext<{
 }>({ token: null });
 
 export function Providers({ children }: { children: React.ReactNode }) {
-	const [token, setToken] = useState<string | null>(null);
 	return (
 		<TonConnectUIProvider
 			manifestUrl="https://ton-connect.github.io/demo-dapp-with-react-ui/tonconnect-manifest.json" //TODO: fix URL
 			language="en"
 			uiPreferences={{ theme: "SYSTEM" }}
-			// restoreConnection={true}
+			restoreConnection={true}
 		>
-			<BackendTokenContext.Provider value={{ token, setToken }}>
-				{children}
-			</BackendTokenContext.Provider>
+			{children}
 		</TonConnectUIProvider>
 	);
 }

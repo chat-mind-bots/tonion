@@ -2,6 +2,6 @@
 
 import { login } from "../../../../lib/auth/login";
 
-export const loginUI = async (address: string, proof: string) => {
-	return await login(address, proof);
+export const loginUI = async (address: string) => {
+	return await login(address);
 };
