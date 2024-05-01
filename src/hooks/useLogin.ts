@@ -3,7 +3,7 @@ import {
 	useTonConnectUI,
 	useTonWallet,
 } from "@tonconnect/ui-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { loginUI } from "@/shared/actions/auth/login";
 import { logoutUI } from "@/shared/actions/auth/logout";
 import { geProofPhrase } from "../../lib/ton-connect/geProof";
@@ -13,6 +13,7 @@ import { getSessionByAddressAction } from "@/shared/actions/session/getSessionBy
 const payloadTTLMS = 1000 * 60 * 20;
 
 export const useLogin = () => {
+	const [prevAddress, setPrevAddress] = useState("");
 	const [tonConnectUI] = useTonConnectUI();
 	const isConnectionRestored = useIsConnectionRestored();
 	const wallet = useTonWallet();
@@ -54,25 +55,34 @@ export const useLogin = () => {
 		) {
 			checkProofAction(wallet.connectItems.tonProof.proof.payload)
 				.then(() => {
-					console.log("IN THEN 1");
 					loginUI(wallet.account.address);
 				})
 				.catch(() => {
-					console.log("IN CATCH 1");
 					logoutUI(wallet.account.address);
 					tonConnectUI.disconnect();
 				});
 		} else {
 			getSessionByAddressAction(wallet.account.address)
 				.then(() => {
-					console.log("IN THEN 2");
 					loginUI(wallet.account.address);
 				})
 				.catch(() => {
-					console.log("IN CATCH 2");
 					logoutUI(wallet.account.address);
 					tonConnectUI.disconnect();
 				});
 		}
 	}, [isConnectionRestored, tonConnectUI, wallet]);
+
+	useEffect(() => {
+		tonConnectUI.onStatusChange((wallet) => {
+			if (!isConnectionRestored) {
+				return;
+			}
+			if (!wallet) {
+				logoutUI(prevAddress);
+			} else {
+				setPrevAddress(wallet.account.address);
+			}
+		});
+	}, [prevAddress, isConnectionRestored]);
 };
