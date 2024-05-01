@@ -4,6 +4,8 @@
 
 @layer base {
     :root {
+        --telegram-stable-height: var(--tg-viewport-stable-height);
+        --telegram-viewport-height: var(--tg-viewport-height);
         --telegram-bg-color: var(--tg-theme-bg-color);
         --telegram-secondary-bg-color: var(--tg-theme-secondary-bg-color);
         --telegram-accent-text-color:  var(--tg-theme-accent-text-color);
@@ -18,7 +20,9 @@
         --telegram-button-color: var(--tg-theme-button-color);
         --telegram-button-text-color: var(--tg-theme-button-text-color);
     }
-
+    body {
+        color: var(--telegram-text-color);
+    }
     html {
         @apply font-sans;
     }

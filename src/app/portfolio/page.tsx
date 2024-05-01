@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function Portfolio() {
 	return (
-		<div>
+		<div className={"pb-[81px]"}>
 			<ContentBlock>
 				<PageTitle title={"Portfolio"} className={"mb-4"} />
 			</ContentBlock>
@@ -16,7 +16,7 @@ export default function Portfolio() {
 			<ContentBlock isBorderBottom isBorderTop>
 				<PageTitle title={"My Stores"} />
 				<Suspense fallback={<Loader />}>
-					<MyStores />
+					<MyStores limit={3} />
 				</Suspense>
 			</ContentBlock>
 
