@@ -6,7 +6,7 @@ export default function Home() {
 		<>
 			<AuthComponent />
 			Market Items
-			<MarketItem title={"test"} description={"Покупай DUREV сука"} />
+			<MarketItem title={"test"} description={"Покупай DUREVV сука"} />
 			<MarketItem title={"test"} description={"Покупай DUREV сука"} />
 			<MarketItem title={"test"} description={"Покупай DUREV сука"} />
 			<MarketItem title={"test"} description={"Покупай DUREV сука"} />
