@@ -15,7 +15,6 @@ export const BackButton = ({ url }: IBackButtonProps) => {
 
 	useEffect(() => {
 		const onBackButtonClick = () => {
-			console.log("click");
 			router.push(url);
 		};
 		backButton.show();
