@@ -23,7 +23,6 @@ function SubmitButton() {
 
 export const CreateStore = () => {
 	const [state, formAction] = useFormState(createStoreAction, initialState);
-
 	return (
 		<form action={formAction}>
 			<div className="relative mb-6">
@@ -45,6 +44,17 @@ export const CreateStore = () => {
 					name={"description"}
 					placeholder="Store Description"
 					errorMessages={state?.errors?.description}
+				/>
+			</div>
+
+			<div className="relative mb-6">
+				<Textarea
+					label={"Store Skills"}
+					id="skills"
+					rows={2}
+					name={"skills"}
+					placeholder="Store Skills"
+					errorMessages={state?.errors?.skills}
 				/>
 			</div>
 			<Typography className={"mt-2 mb-3 text-telegram-link"} variant={"h3"}>
