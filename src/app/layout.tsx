@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { Header } from "@/shared/components/core/header";
 import { Navigation } from "@/shared/components/core/navigation";
 import Script from "next/script";
+import { TmaSDKLoader } from "@/shared/components/TmaSDKLoader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,17 +29,19 @@ export default function RootLayout({
 					"min-h-screen"
 				)}
 			>
-				<Script
-					src="https://telegram.org/js/telegram-web-app.js"
-					strategy={"afterInteractive"}
-				/>
-				<Providers>
-					<div className={"flex flex-col gap-4"}>
-						<Header />
-						{children}
-					</div>
-					<Navigation />
-				</Providers>
+				<TmaSDKLoader>
+					<Script
+						src="https://telegram.org/js/telegram-web-app.js"
+						strategy={"afterInteractive"}
+					/>
+					<Providers>
+						<div className={"flex flex-col gap-4"}>
+							<Header />
+							{children}
+						</div>
+						<Navigation />
+					</Providers>
+				</TmaSDKLoader>
 			</body>
 		</html>
 	);
