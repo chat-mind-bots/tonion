@@ -6,6 +6,8 @@ import { PrimaryButton } from "@/shared/components/core/button/primaryButton";
 import { Input } from "@/shared/components/core/input";
 import { Textarea } from "@/shared/components/core/textarea";
 import Typography from "@/shared/components/core/typography";
+import Chip from "@/shared/components/core/chip";
+import clsx from "clsx";
 
 const initialState = {
 	message: "",
@@ -48,14 +50,32 @@ export const CreateStore = () => {
 			</div>
 
 			<div className="relative mb-6">
-				<Textarea
-					label={"Store Skills"}
-					id="skills"
-					rows={2}
-					name={"skills"}
-					placeholder="Store Skills"
-					errorMessages={state?.errors?.skills}
-				/>
+				<div className={clsx("flex gap-[12px] flex-col")}>
+					<Typography
+						variant={"p"}
+						className={clsx(
+							"block mb-2 text-sm font-medium text-telegram-text"
+						)}
+					>
+						Store Skills
+					</Typography>
+					<div className={clsx("flex", "gap-1", "flex-wrap")}>
+						<Chip label={"JavaScript"} onDelete={() => {}} />
+						<Chip label={"React"} onDelete={() => {}} />
+						<Chip label={"React"} onDelete={() => {}} />
+						<Chip label={"React"} onDelete={() => {}} />
+						<Chip label={"React"} onDelete={() => {}} />
+						<Chip label={"Tailwind"} onDelete={() => {}} />
+						<Chip label={"NextJS"} onDelete={() => {}} />
+					</div>
+					<Textarea
+						id="skills"
+						rows={2}
+						name={"skills"}
+						placeholder="Store Skills"
+						errorMessages={state?.errors?.skills}
+					/>
+				</div>
 			</div>
 			<Typography className={"mt-2 mb-3 text-telegram-link"} variant={"h3"}>
 				Success!

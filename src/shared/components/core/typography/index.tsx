@@ -1,7 +1,17 @@
 import React, { ReactNode } from "react";
 import clsx from "clsx";
 
-type TypographyVariant = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div";
+type TypographyVariant =
+	| "h1"
+	| "h2"
+	| "h3"
+	| "h4"
+	| "h5"
+	| "h6"
+	| "p"
+	| "div"
+	| "span";
+
 interface TypographyProps {
 	variant?: TypographyVariant;
 	bold?: boolean;
