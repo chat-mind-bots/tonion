@@ -33,7 +33,7 @@ export default function RootLayout({
 					strategy={"afterInteractive"}
 				/>
 				<Providers>
-					<div className={"flex flex-col gap-4"}>
+					<div className={"flex flex-col gap-4 pb-[81px]"}>
 						<Header />
 						{children}
 					</div>
