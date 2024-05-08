@@ -6,6 +6,7 @@ import { CreateStore } from "@/shared/components/stores/createStore";
 import { MyStores } from "@/shared/components/stores/myStores";
 import { PrimaryButton } from "@/shared/components/core/button/primaryButton";
 import Link from "next/link";
+import { BackButton } from "@/shared/components/core/backButton";
 
 export default function StoreList() {
 	return (
@@ -26,6 +27,7 @@ export default function StoreList() {
 					<Link href={"/store/create"}>+ Create Market</Link>
 				</PrimaryButton>
 			</ContentBlock>
+			<BackButton url={"/portfolio"} />
 		</div>
 	);
 }
