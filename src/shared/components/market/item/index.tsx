@@ -7,8 +7,9 @@ import { DynamicPng } from "@/shared/components/core/image/dynamic-png";
 interface MarketItemProps {
 	title: string;
 	description?: string;
+	skills?: string[]
 }
-const MarketItem = ({ title, description }: MarketItemProps) => {
+const MarketItem = ({ title, description, skills }: MarketItemProps) => {
 	return (
 		<div
 			className={clsx(
@@ -30,6 +31,7 @@ const MarketItem = ({ title, description }: MarketItemProps) => {
 						{title}
 					</Typography>
 					<Typography>{description}</Typography>
+					{skills && skills.length > 0 &&  <Typography>Skills: {skills.join(" ")}</Typography>}
 				</div>
 			</div>
 			<Button>Open</Button>

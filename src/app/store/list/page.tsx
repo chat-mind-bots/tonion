@@ -10,7 +10,7 @@ import { BackButton } from "@/shared/components/core/backButton";
 
 export default function StoreList() {
 	return (
-		<div className={"pb-[81px]"}>
+		<div>
 			<ContentBlock>
 				<PageTitle title={"Stores list"} className={"mb-4"} />
 			</ContentBlock>

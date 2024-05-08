@@ -21,7 +21,7 @@ export const MyStores = async ({limit}: MyStoresProps) => {
         <div className={"flex flex-col items-center"}>
             {stores.map((store) => (
                 <div className={"w-full"} key={store.name}>
-                    <MarketItem title={store.name} description={store.description}/>
+                    <MarketItem title={store.name} description={store.description} skills={store.skills.map((item)=> item.title)}/>
                 </div>
             ))}
             {limit && <PrimaryButton>

@@ -10,6 +10,13 @@ export const getStoresMy = async (limit?: number) => {
 	const stores = await prisma.store.findMany({
 		where: { ownerId: user.user.id },
 		take: limit,
+		include: {
+			skills: {
+				select: {
+					title: true
+				}
+			}
+		}
 	});
 	return stores;
 };
