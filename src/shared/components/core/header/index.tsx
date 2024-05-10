@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import AuthComponent from "@/shared/components/auth";
 import { DynamicPng } from "@/shared/components/core/image/dynamic-png";
+import { BackButton } from "@/shared/components/core/backButton";
 
 export const Header = () => {
 	return (
