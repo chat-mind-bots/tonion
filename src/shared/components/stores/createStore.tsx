@@ -8,8 +8,8 @@ import { Textarea } from "@/shared/components/core/textarea";
 import Typography from "@/shared/components/core/typography";
 import Chip from "@/shared/components/core/chip";
 import clsx from "clsx";
-import {EMPTY_FORM_STATE} from "@/utils/toFormState";
-import {useEffect, useState} from "react";
+import { EMPTY_FORM_STATE } from "@/utils/toFormState";
+import { useEffect, useState } from "react";
 
 const initialState = {
 	message: "",
@@ -26,9 +26,15 @@ function SubmitButton() {
 }
 
 export const CreateStore = () => {
-	const [skill, setSkill] = useState(["test"])
-	const [state, formAction] = useFormState(createStoreAction.bind(null, skill), EMPTY_FORM_STATE);
-	console.log(state.fieldErrors)
+	const [skills, setSkill] = useState<{ [x: string]: boolean }>({});
+	const [skillValue, setSkillValue] = useState("");
+	const [state, formAction] = useFormState(
+		createStoreAction.bind(
+			null,
+			Object.keys(skills).filter((key) => skills[key])
+		),
+		EMPTY_FORM_STATE
+	);
 	return (
 		<form action={formAction}>
 			<div className="relative mb-6">
@@ -64,21 +70,40 @@ export const CreateStore = () => {
 						Store Skills
 					</Typography>
 					<div className={clsx("flex", "gap-1", "flex-wrap")}>
-						<Chip label={"JavaScript"} onDelete={() => {}} />
-						<Chip label={"React"} onDelete={() => {}} />
-						<Chip label={"React"} onDelete={() => {}} />
-						<Chip label={"React"} onDelete={() => {}} />
-						<Chip label={"React"} onDelete={() => {}} />
-						<Chip label={"Tailwind"} onDelete={() => {}} />
-						<Chip label={"NextJS"} onDelete={() => {}} />
+						{Object.keys(skills)
+							.filter((key) => skills[key])
+							.map((skill) => {
+								return (
+									<Chip
+										key={skill}
+										label={skill}
+										onDelete={() => {
+											setSkill((prevState) => ({
+												...prevState,
+												[skill]: false,
+											}));
+										}}
+									/>
+								);
+							})}
 					</div>
-					{/*<Textarea*/}
-					{/*	id="skills"*/}
-					{/*	rows={2}*/}
-					{/*	name={"skills"}*/}
-					{/*	placeholder="Store Skills"*/}
-					{/*	errorMessages={state.fieldErrors["skills"]?.[0]}*/}
-					{/*/>*/}
+					<Textarea
+						id="skills"
+						rows={2}
+						name={"skills"}
+						value={skillValue}
+						onChange={(event) => {
+							setSkillValue(event.target.value);
+						}}
+						onKeyDown={(event) => {
+							if (event.key === "Enter" || event.key === " ") {
+								setSkill((prevState) => ({ ...prevState, [skillValue]: true }));
+								setSkillValue("");
+							}
+						}}
+						placeholder="Store Skills"
+						errorMessages={[state.fieldErrors["skills"]?.[0]]}
+					/>
 				</div>
 			</div>
 			<Typography className={"mt-2 mb-3 text-telegram-link"} variant={"h3"}>
