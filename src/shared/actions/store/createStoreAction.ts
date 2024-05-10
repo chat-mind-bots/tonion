@@ -1,5 +1,5 @@
 "use server";
-import {z} from "zod";
+import {z, ZodError} from "zod";
 
 import {createStore} from "../../../../lib/store/createStore";
 import {createSkills} from "../../../../lib/store/createSkills";
@@ -14,7 +14,7 @@ const schema = z.object({
 
 export const createStoreAction = async (skills: string[], formState: FormState, formData: FormData) => {
     try {
-        const validatedFields = schema.safeParse({
+        const validatedFields = schema.parse({
             name: formData.get("name"),
             description: formData.get("description"),
             skills: skills,
@@ -24,15 +24,14 @@ export const createStoreAction = async (skills: string[], formState: FormState, 
             name: formData.get("name") as string,
             description: formData.get("description") as string,
         });
-
-        const skillsDto = validatedFields.data?.skills.map((skill: string) => ({
-            title: skill,
-            storeId: store.id
-        }));
-        console.log(skills)
+        if (validatedFields.data?.skills) {
+            const skillsDto = validatedFields.data?.skills.map((skill: string) => ({
+                title: skill,
+                storeId: store.id
+            }));
         const storeSkills = await createSkills([...skillsDto], store.id)
+        }
     } catch (error) {
-        console.log(error)
         return fromErrorToFormState(error)
     }
 

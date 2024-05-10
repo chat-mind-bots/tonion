@@ -28,6 +28,7 @@ function SubmitButton() {
 export const CreateStore = () => {
 	const [skill, setSkill] = useState(["test"])
 	const [state, formAction] = useFormState(createStoreAction.bind(null, skill), EMPTY_FORM_STATE);
+	console.log(state.fieldErrors)
 	return (
 		<form action={formAction}>
 			<div className="relative mb-6">
@@ -37,7 +38,7 @@ export const CreateStore = () => {
 					id="name"
 					name={"name"}
 					placeholder="Store Name"
-					errorMessages={state.fieldErrors["name"]?.[0]}
+					errorMessages={[state.fieldErrors["name"]?.[0]]}
 				/>
 			</div>
 
@@ -48,7 +49,7 @@ export const CreateStore = () => {
 					rows={2}
 					name={"description"}
 					placeholder="Store Description"
-					errorMessages={state.fieldErrors["description"]?.[0]}
+					errorMessages={[state.fieldErrors["description"]?.[0]]}
 				/>
 			</div>
 
