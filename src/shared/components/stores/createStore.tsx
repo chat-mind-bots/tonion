@@ -8,6 +8,8 @@ import { Textarea } from "@/shared/components/core/textarea";
 import Typography from "@/shared/components/core/typography";
 import Chip from "@/shared/components/core/chip";
 import clsx from "clsx";
+import {EMPTY_FORM_STATE} from "@/utils/toFormState";
+import {useEffect, useState} from "react";
 
 const initialState = {
 	message: "",
@@ -24,7 +26,8 @@ function SubmitButton() {
 }
 
 export const CreateStore = () => {
-	const [state, formAction] = useFormState(createStoreAction, initialState);
+	const [skill, setSkill] = useState(["test"])
+	const [state, formAction] = useFormState(createStoreAction.bind(null, skill), EMPTY_FORM_STATE);
 	return (
 		<form action={formAction}>
 			<div className="relative mb-6">
@@ -34,7 +37,7 @@ export const CreateStore = () => {
 					id="name"
 					name={"name"}
 					placeholder="Store Name"
-					errorMessages={state?.errors?.name}
+					errorMessages={state.fieldErrors["name"]?.[0]}
 				/>
 			</div>
 
@@ -45,7 +48,7 @@ export const CreateStore = () => {
 					rows={2}
 					name={"description"}
 					placeholder="Store Description"
-					errorMessages={state?.errors?.description}
+					errorMessages={state.fieldErrors["description"]?.[0]}
 				/>
 			</div>
 
@@ -68,13 +71,13 @@ export const CreateStore = () => {
 						<Chip label={"Tailwind"} onDelete={() => {}} />
 						<Chip label={"NextJS"} onDelete={() => {}} />
 					</div>
-					<Textarea
-						id="skills"
-						rows={2}
-						name={"skills"}
-						placeholder="Store Skills"
-						errorMessages={state?.errors?.skills}
-					/>
+					{/*<Textarea*/}
+					{/*	id="skills"*/}
+					{/*	rows={2}*/}
+					{/*	name={"skills"}*/}
+					{/*	placeholder="Store Skills"*/}
+					{/*	errorMessages={state.fieldErrors["skills"]?.[0]}*/}
+					{/*/>*/}
 				</div>
 			</div>
 			<Typography className={"mt-2 mb-3 text-telegram-link"} variant={"h3"}>

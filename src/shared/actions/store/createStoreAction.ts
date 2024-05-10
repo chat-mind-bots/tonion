@@ -4,40 +4,37 @@ import {z} from "zod";
 import {createStore} from "../../../../lib/store/createStore";
 import {createSkills} from "../../../../lib/store/createSkills";
 import prisma from "../../../../lib/prisma";
+import {FormState, fromErrorToFormState, toFormState} from "@/utils/toFormState";
 
 const schema = z.object({
     name: z.string().min(3, "Minimum length is 3 Symbols"),
     description: z.string(),
-    skills: z.string().min(3, "Minimum length is 3 Symbols")
+    skills: z.string().min(3, "Maximum length is 3 Symbols").max(10, "Maximum length is 15 Symbols").array(),
 });
 
-export const createStoreAction = async (prevState: any, formData: FormData) => {
-    const validatedFields = schema.safeParse({
-        name: formData.get("name"),
-        description: formData.get("description"),
-        skills: formData.get("skills"),
-    });
+export const createStoreAction = async (skills: string[], formState: FormState, formData: FormData) => {
+    try {
+        const validatedFields = schema.safeParse({
+            name: formData.get("name"),
+            description: formData.get("description"),
+            skills: skills,
+        });
 
-    if (!validatedFields.success) {
-        return {
-            errors: validatedFields.error.flatten().fieldErrors,
-        };
+        const store = await createStore({
+            name: formData.get("name") as string,
+            description: formData.get("description") as string,
+        });
+
+        const skillsDto = validatedFields.data?.skills.map((skill: string) => ({
+            title: skill,
+            storeId: store.id
+        }));
+        console.log(skills)
+        const storeSkills = await createSkills([...skillsDto], store.id)
+    } catch (error) {
+        console.log(error)
+        return fromErrorToFormState(error)
     }
 
-    const store = await createStore({
-        name: formData.get("name") as string,
-        description: formData.get("description") as string,
-    });
-    if (!store) {
-        throw "No such store";
-    }
-    const skillsDto = validatedFields.data.skills.split(" ").map((skill: string) => ({
-        title: skill,
-        storeId: store.id
-    }));
-    const skills = await createSkills([...skillsDto], store.id)
-
-    return {
-        message: "Success!",
-    };
+    return toFormState('SUCCESS', 'Store created');
 };
