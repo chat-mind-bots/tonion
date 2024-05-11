@@ -62,6 +62,14 @@ export const CreateStore = () => {
 			[skill]: false,
 		}));
 	};
+
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (e.key === " " && skillValue.length) {
+			setSkill((prevSkills) => ({ ...prevSkills, [skillValue]: true }));
+			setSkillValue("");
+		}
+	};
+
 	return (
 		<form action={formAction} ref={formRef}>
 			<div className="relative mb-6">
@@ -112,15 +120,7 @@ export const CreateStore = () => {
 						onChange={(event) => {
 							setSkillValue(event.target.value);
 						}}
-						onKeyDown={(event) => {
-							if (
-								(event.key === "Enter" || event.key === " ") &&
-								skillValue.length
-							) {
-								setSkill((prevState) => ({ ...prevState, [skillValue]: true }));
-								setSkillValue("");
-							}
-						}}
+						onKeyDown={handleKeyDown}
 						placeholder="Store Skills"
 						errorMessages={
 							state.fieldErrors["skills"]
