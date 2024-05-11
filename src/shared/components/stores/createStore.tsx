@@ -121,10 +121,12 @@ export const CreateStore = () => {
 					/>
 				</div>
 			</div>
-			<Typography className={"mt-2 mb-3 text-telegram-link"} variant={"h3"}>
-				Success!
-			</Typography>
-			<PrimaryButton type={"submit"}>{"Create Store"}</PrimaryButton>
+			{state.status === "SUCCESS" && (
+				<Typography className={"mt-2 mb-3 text-telegram-link"} variant={"h3"}>
+					Success!
+				</Typography>
+			)}
+			<SubmitButton />
 		</form>
 	);
 };
