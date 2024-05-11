@@ -61,6 +61,23 @@ export const Navigation = () => {
 			),
 			isDisabled: !address,
 		},
+		{
+			alt: "categories",
+			href: "/categories",
+			displayName: "categories",
+			icon: (
+				<PortfolioSvg
+					className={clsx(
+						{
+							"fill-current": true,
+						},
+						"w-[23px]",
+						"h-[23px]"
+					)}
+				/>
+			),
+			isDisabled: !address,
+		},
 	];
 
 	return (

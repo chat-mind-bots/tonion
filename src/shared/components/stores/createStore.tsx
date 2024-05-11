@@ -55,7 +55,7 @@ export const CreateStore = () => {
 					rows={2}
 					name={"description"}
 					placeholder="Store Description"
-					errorMessages={[state.fieldErrors["description"]?.[0]]}
+					errorMessages={[state.fieldErrors["description"]?.[0] as string]}
 				/>
 			</div>
 
