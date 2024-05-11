@@ -55,7 +55,10 @@ export const CreateStore = () => {
 		),
 		EMPTY_FORM_STATE
 	);
-	const formRef = useFormReset(state);
+	const onReset = () => {
+		setSkill({});
+	};
+	const formRef = useFormReset(state, onReset);
 	const handleSkillDelete = (skill: string) => {
 		setSkill((prevState) => ({
 			...prevState,
