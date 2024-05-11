@@ -38,6 +38,7 @@ const Chip = ({ label, onDelete }: ChipProps) => {
 					src="https://getmatch.ru/static/img/icons/icon-times-white.svg"
 					alt="exit"
 					className={clsx("cursor-pointer")}
+					onClick={onDelete}
 				></img>
 			)}
 			<Typography variant={"span"}>{label}</Typography>
