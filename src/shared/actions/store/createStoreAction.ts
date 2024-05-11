@@ -13,11 +13,7 @@ import {
 const schema = z.object({
 	name: z.string().min(3, "Minimum length is 3 Symbols"),
 	description: z.string(),
-	skills: z
-		.string()
-		.min(3, "Maximum length is 3 Symbols")
-		.max(10, "Maximum length is 15 Symbols")
-		.array(),
+	skills: z.string().array().length(1, "Enter at least 1 skill"),
 });
 
 export const createStoreAction = async (
@@ -35,7 +31,7 @@ export const createStoreAction = async (
 			name: formData.get("name") as string,
 			description: formData.get("description") as string,
 		});
-		if (validatedFields.skills) {
+		if (validatedFields.skills && store) {
 			const skillsDto = validatedFields.skills.map((skill: string) => ({
 				title: skill,
 				storeId: store.id,
