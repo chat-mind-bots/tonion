@@ -9,11 +9,9 @@ import Typography from "@/shared/components/core/typography";
 import Chip from "@/shared/components/core/chip";
 import clsx from "clsx";
 import { EMPTY_FORM_STATE } from "@/utils/toFormState";
-import { useEffect, useState } from "react";
-
-const initialState = {
-	message: "",
-};
+import { memo, useState } from "react";
+import { ErrorMessage } from "@/shared/components/core/errorMessage";
+import { useFormReset } from "@/hooks/useFormReset";
 
 function SubmitButton() {
 	const { pending } = useFormStatus();
@@ -25,6 +23,28 @@ function SubmitButton() {
 	);
 }
 
+interface SkillChipProps {
+	skills: { [x: string]: boolean };
+	onDelete: (skill: string) => void;
+}
+
+const MemoizedChips = memo(function SkillChipList({
+	skills,
+	onDelete,
+}: SkillChipProps) {
+	return (
+		<div className={clsx("flex", "gap-1", "flex-wrap")}>
+			{Object.keys(skills)
+				.filter((key) => skills[key])
+				.map((skill) => {
+					return (
+						<Chip key={skill} label={skill} onDelete={() => onDelete(skill)} />
+					);
+				})}
+		</div>
+	);
+});
+
 export const CreateStore = () => {
 	const [skills, setSkill] = useState<{ [x: string]: boolean }>({});
 	const [skillValue, setSkillValue] = useState("");
@@ -35,8 +55,26 @@ export const CreateStore = () => {
 		),
 		EMPTY_FORM_STATE
 	);
+	const onReset = () => {
+		setSkill({});
+	};
+	const formRef = useFormReset(state, onReset);
+	const handleSkillDelete = (skill: string) => {
+		setSkill((prevState) => ({
+			...prevState,
+			[skill]: false,
+		}));
+	};
+
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (e.key === " " && skillValue.length) {
+			setSkill((prevSkills) => ({ ...prevSkills, [skillValue]: true }));
+			setSkillValue("");
+		}
+	};
+
 	return (
-		<form action={formAction}>
+		<form action={formAction} ref={formRef}>
 			<div className="relative mb-6">
 				<Input
 					label={"Store Name"}
@@ -77,41 +115,15 @@ export const CreateStore = () => {
 					>
 						Store Skills
 					</Typography>
-					<div className={clsx("flex", "gap-1", "flex-wrap")}>
-						{Object.keys(skills)
-							.filter((key) => skills[key])
-							.map((skill) => {
-								return (
-									<Chip
-										key={skill}
-										label={skill}
-										onDelete={() => {
-											setSkill((prevState) => ({
-												...prevState,
-												[skill]: false,
-											}));
-										}}
-									/>
-								);
-							})}
-					</div>
-					<Textarea
+					<MemoizedChips skills={skills} onDelete={handleSkillDelete} />
+					<Input
 						id="skills"
-						rows={2}
 						name={"skills"}
 						value={skillValue}
 						onChange={(event) => {
 							setSkillValue(event.target.value);
 						}}
-						onKeyDown={(event) => {
-							if (
-								(event.key === "Enter" || event.key === " ") &&
-								skillValue.length
-							) {
-								setSkill((prevState) => ({ ...prevState, [skillValue]: true }));
-								setSkillValue("");
-							}
-						}}
+						onKeyDown={handleKeyDown}
 						placeholder="Store Skills"
 						errorMessages={
 							state.fieldErrors["skills"]
@@ -121,10 +133,16 @@ export const CreateStore = () => {
 					/>
 				</div>
 			</div>
-			<Typography className={"mt-2 mb-3 text-telegram-link"} variant={"h3"}>
-				Success!
-			</Typography>
-			<PrimaryButton type={"submit"}>{"Create Store"}</PrimaryButton>
+			{state.status === "SUCCESS" && (
+				<Typography className={"mt-2 mb-3 text-telegram-link"} variant={"h3"}>
+					Success!
+				</Typography>
+			)}
+
+			{state.status === "ERROR" && (
+				<ErrorMessage errorMessage={state.message} />
+			)}
+			<SubmitButton />
 		</form>
 	);
 };
