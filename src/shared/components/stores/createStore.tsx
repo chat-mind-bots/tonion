@@ -16,6 +16,7 @@ import { useFormUtils } from "@/hooks/useFormUtils";
 const initialState = {
 	message: "",
 };
+import { memo, useState } from "react";
 
 function SubmitButton() {
 	const { pending } = useFormStatus();
@@ -27,6 +28,28 @@ function SubmitButton() {
 	);
 }
 
+interface SkillChipProps {
+	skills: { [x: string]: boolean };
+	onDelete: (skill: string) => void;
+}
+
+const MemoizedChips = memo(function SkillChipList({
+	skills,
+	onDelete,
+}: SkillChipProps) {
+	return (
+		<div className={clsx("flex", "gap-1", "flex-wrap")}>
+			{Object.keys(skills)
+				.filter((key) => skills[key])
+				.map((skill) => {
+					return (
+						<Chip key={skill} label={skill} onDelete={() => onDelete(skill)} />
+					);
+				})}
+		</div>
+	);
+});
+
 export const CreateStore = () => {
 	const [skills, setSkill] = useState<{ [x: string]: boolean }>({});
 	const [skillValue, setSkillValue] = useState("");
@@ -37,9 +60,27 @@ export const CreateStore = () => {
 		),
 		EMPTY_FORM_STATE
 	);
+	const onReset = () => {
+		setSkill({});
+	};
+	
+	const handleSkillDelete = (skill: string) => {
+		setSkill((prevState) => ({
+			...prevState,
+			[skill]: false,
+		}));
+	};
+
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (e.key === " " && skillValue.length) {
+			setSkill((prevSkills) => ({ ...prevSkills, [skillValue]: true }));
+			setSkillValue("");
+		}
+	};
+
 	const formRef = useRef<HTMLFormElement>(null);
 
-	useFormUtils(state, formRef);
+	useFormUtils(state, formRef, onReset);
 
 	return (
 		<form action={formAction} ref={formRef}>
@@ -75,41 +116,15 @@ export const CreateStore = () => {
 					>
 						Store Skills
 					</Typography>
-					<div className={clsx("flex", "gap-1", "flex-wrap")}>
-						{Object.keys(skills)
-							.filter((key) => skills[key])
-							.map((skill) => {
-								return (
-									<Chip
-										key={skill}
-										label={skill}
-										onDelete={() => {
-											setSkill((prevState) => ({
-												...prevState,
-												[skill]: false,
-											}));
-										}}
-									/>
-								);
-							})}
-					</div>
-					<Textarea
+					<MemoizedChips skills={skills} onDelete={handleSkillDelete} />
+					<Input
 						id="skills"
-						rows={2}
 						name={"skills"}
 						value={skillValue}
 						onChange={(event) => {
 							setSkillValue(event.target.value);
 						}}
-						onKeyDown={(event) => {
-							if (
-								(event.key === "Enter" || event.key === " ") &&
-								skillValue.length
-							) {
-								setSkill((prevState) => ({ ...prevState, [skillValue]: true }));
-								setSkillValue("");
-							}
-						}}
+						onKeyDown={handleKeyDown}
 						placeholder="Store Skills"
 						errorMessages={getErrorMessage(state.fieldErrors["skills"]?.[0])}
 					/>

@@ -1,9 +1,8 @@
 "use server";
-import { z, ZodError } from "zod";
+import { z } from "zod";
 
 import { createStore } from "../../../../lib/store/createStore";
 import { createSkills } from "../../../../lib/store/createSkills";
-import prisma from "../../../../lib/prisma";
 import {
 	FormState,
 	fromErrorToFormState,
@@ -13,7 +12,7 @@ import {
 const schema = z.object({
 	name: z.string().min(3, "Minimum length is 3 Symbols"),
 	description: z.string(),
-	skills: z.string().array().length(1, "Enter at least 1 skill"),
+	skills: z.array(z.string()).min(1, "Enter at least 1 skill"),
 });
 
 export const createStoreAction = async (
