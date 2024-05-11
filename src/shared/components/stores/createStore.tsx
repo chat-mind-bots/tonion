@@ -9,13 +9,8 @@ import Typography from "@/shared/components/core/typography";
 import Chip from "@/shared/components/core/chip";
 import clsx from "clsx";
 import { EMPTY_FORM_STATE } from "@/utils/toFormState";
-import { useEffect, useRef, useState } from "react";
 import { getErrorMessage } from "@/utils/getEttotMessage";
 import { useFormUtils } from "@/hooks/useFormUtils";
-
-const initialState = {
-	message: "",
-};
 import { memo, useState } from "react";
 
 function SubmitButton() {
@@ -63,7 +58,7 @@ export const CreateStore = () => {
 	const onReset = () => {
 		setSkill({});
 	};
-	
+
 	const handleSkillDelete = (skill: string) => {
 		setSkill((prevState) => ({
 			...prevState,
@@ -78,9 +73,7 @@ export const CreateStore = () => {
 		}
 	};
 
-	const formRef = useRef<HTMLFormElement>(null);
-
-	useFormUtils(state, formRef, onReset);
+	const { formRef } = useFormUtils(state, onReset);
 
 	return (
 		<form action={formAction} ref={formRef}>

@@ -26,9 +26,7 @@ export const CategoryCreate = () => {
 		EMPTY_FORM_STATE
 	);
 
-	const formRef = useRef<HTMLFormElement>(null);
-
-	useFormUtils(state, formRef);
+	const { formRef } = useFormUtils(state);
 
 	return (
 		<form action={formAction} ref={formRef}>
