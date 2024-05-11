@@ -44,7 +44,11 @@ export const CreateStore = () => {
 					id="name"
 					name={"name"}
 					placeholder="Store Name"
-					errorMessages={[state.fieldErrors["name"]?.[0]]}
+					errorMessages={
+						state.fieldErrors["name"]
+							? [state.fieldErrors["name"][0]]
+							: undefined
+					}
 				/>
 			</div>
 
@@ -55,7 +59,11 @@ export const CreateStore = () => {
 					rows={2}
 					name={"description"}
 					placeholder="Store Description"
-					errorMessages={[state.fieldErrors["description"]?.[0] as string]}
+					errorMessages={
+						state.fieldErrors["description"]
+							? [state.fieldErrors["description"][0]]
+							: undefined
+					}
 				/>
 			</div>
 
@@ -96,13 +104,20 @@ export const CreateStore = () => {
 							setSkillValue(event.target.value);
 						}}
 						onKeyDown={(event) => {
-							if (event.key === "Enter" || event.key === " ") {
+							if (
+								(event.key === "Enter" || event.key === " ") &&
+								skillValue.length
+							) {
 								setSkill((prevState) => ({ ...prevState, [skillValue]: true }));
 								setSkillValue("");
 							}
 						}}
 						placeholder="Store Skills"
-						errorMessages={[state.fieldErrors["skills"]?.[0]]}
+						errorMessages={
+							state.fieldErrors["skills"]
+								? [state.fieldErrors["skills"][0]]
+								: undefined
+						}
 					/>
 				</div>
 			</div>
