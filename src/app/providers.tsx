@@ -2,6 +2,7 @@
 
 import { TonConnectUIProvider } from "@tonconnect/ui-react";
 import { createContext, useState } from "react";
+import ToastProvider from "@/app/providers/toastProvider";
 
 export const BackendTokenContext = createContext<{
 	token: string | null;
@@ -16,7 +17,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
 			uiPreferences={{ theme: "SYSTEM" }}
 			restoreConnection={true}
 		>
-			{children}
+			<ToastProvider>{children}</ToastProvider>
 		</TonConnectUIProvider>
 	);
 }

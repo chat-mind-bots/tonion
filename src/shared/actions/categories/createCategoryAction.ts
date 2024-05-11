@@ -10,11 +10,12 @@ import {
 	fromErrorToFormState,
 	toFormState,
 } from "@/utils/toFormState";
+import { showToast } from "@/shared/helpers/showToast";
 
 const schema = z.object({
 	name: z.string().min(3, "Minimum length is 3 Symbols"),
 	description: z.string(),
-	parentId: z.string().optional(),
+	// parentId: z.string().optional(),
 });
 export const createCategoryAction = async (
 	formState: FormState,
@@ -24,14 +25,14 @@ export const createCategoryAction = async (
 		const validatedFields = schema.parse({
 			name: formData.get("name"),
 			description: formData.get("description"),
-			parentId: formData.get("parentId"),
 		});
 
 		const data: CreateCategoryDto = {
-			name: "",
-			description: "",
-			parentId: "",
+			name: validatedFields.name,
+			description: validatedFields.description,
+			parentId: (formData.get("parentId") as string) ?? undefined,
 		};
+
 		await creteCategory(data);
 
 		return toFormState("SUCCESS", "Category created");

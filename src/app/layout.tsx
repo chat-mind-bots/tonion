@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { Header } from "@/shared/components/core/header";
 import { Navigation } from "@/shared/components/core/navigation";
 import Script from "next/script";
-import { TmaSDKLoader } from "@/shared/components/TmaSDKLoader";
+import { TmaSDKLoader } from "@/app/providers/sdkLoader";
 
 const inter = Inter({ subsets: ["latin"] });
 

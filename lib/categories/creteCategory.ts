@@ -5,7 +5,7 @@ import { checkAdmin } from "../auth/checkAdmin";
 export interface CreateCategoryDto {
 	name: string;
 	description: string;
-	parentId: string;
+	parentId?: string;
 }
 
 export const creteCategory = async ({

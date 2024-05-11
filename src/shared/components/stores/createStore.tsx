@@ -9,7 +9,9 @@ import Typography from "@/shared/components/core/typography";
 import Chip from "@/shared/components/core/chip";
 import clsx from "clsx";
 import { EMPTY_FORM_STATE } from "@/utils/toFormState";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { getErrorMessage } from "@/utils/getEttotMessage";
+import { useFormUtils } from "@/hooks/useFormUtils";
 
 const initialState = {
 	message: "",
@@ -35,8 +37,12 @@ export const CreateStore = () => {
 		),
 		EMPTY_FORM_STATE
 	);
+	const formRef = useRef<HTMLFormElement>(null);
+
+	useFormUtils(state, formRef);
+
 	return (
-		<form action={formAction}>
+		<form action={formAction} ref={formRef}>
 			<div className="relative mb-6">
 				<Input
 					label={"Store Name"}
@@ -44,11 +50,7 @@ export const CreateStore = () => {
 					id="name"
 					name={"name"}
 					placeholder="Store Name"
-					errorMessages={
-						state.fieldErrors["name"]
-							? [state.fieldErrors["name"][0]]
-							: undefined
-					}
+					errorMessages={getErrorMessage(state.fieldErrors["name"]?.[0])}
 				/>
 			</div>
 
@@ -59,11 +61,7 @@ export const CreateStore = () => {
 					rows={2}
 					name={"description"}
 					placeholder="Store Description"
-					errorMessages={
-						state.fieldErrors["description"]
-							? [state.fieldErrors["description"][0]]
-							: undefined
-					}
+					errorMessages={getErrorMessage(state.fieldErrors["description"]?.[0])}
 				/>
 			</div>
 
@@ -113,18 +111,11 @@ export const CreateStore = () => {
 							}
 						}}
 						placeholder="Store Skills"
-						errorMessages={
-							state.fieldErrors["skills"]
-								? [state.fieldErrors["skills"][0]]
-								: undefined
-						}
+						errorMessages={getErrorMessage(state.fieldErrors["skills"]?.[0])}
 					/>
 				</div>
 			</div>
-			<Typography className={"mt-2 mb-3 text-telegram-link"} variant={"h3"}>
-				Success!
-			</Typography>
-			<PrimaryButton type={"submit"}>{"Create Store"}</PrimaryButton>
+			<SubmitButton />
 		</form>
 	);
 };

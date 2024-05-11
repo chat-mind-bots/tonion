@@ -6,6 +6,6 @@ export const CategoriesList = async () => {
 	const categories = (await getCategoriesAction()) ?? [];
 
 	return categories.map((category) => {
-		return <div>{category.name}</div>;
+		return <div key={`category - ${category.id}`}>{category.name}</div>;
 	});
 };

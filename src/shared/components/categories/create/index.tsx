@@ -7,6 +7,8 @@ import { Input } from "@/shared/components/core/input";
 import { getErrorMessage } from "@/utils/getEttotMessage";
 import { Textarea } from "@/shared/components/core/textarea";
 import { PrimaryButton } from "@/shared/components/core/button/primaryButton";
+import { useFormUtils } from "@/hooks/useFormUtils";
+import { useRef } from "react";
 
 function SubmitButton() {
 	const { pending } = useFormStatus();
@@ -24,8 +26,12 @@ export const CategoryCreate = () => {
 		EMPTY_FORM_STATE
 	);
 
+	const formRef = useRef<HTMLFormElement>(null);
+
+	useFormUtils(state, formRef);
+
 	return (
-		<form action={formAction}>
+		<form action={formAction} ref={formRef}>
 			<div className={"relative mb-6"}>
 				<Input
 					label={"Category name"}
