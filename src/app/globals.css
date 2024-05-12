@@ -2,32 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+@layer base {
+    :root {
+        /*constants*/
+        --telegram-stable-height: var(--tg-viewport-stable-height, 100vh);
+        --telegram-viewport-height: var(--tg-viewport-height, 100vh);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+        /*Colors*/
+        --telegram-bg-color: var(--tg-theme-bg-color, #17212b);
+        --telegram-secondary-bg-color: var(--tg-theme-secondary-bg-color, #ffffff);
+        --telegram-accent-text-color:  var(--tg-theme-accent-text-color, #6ab2f2);
+        --telegram-destructive-text-color:  var(--tg-theme-destructive-text-color, #ec3942);
+        --telegram-header-bg-color:  var(--tg-theme-header-bg-color, #131415);
+        --telegram-section-bg-color:  var(--tg-theme-section-bg-color, #131415);
+        --telegram-section-header-text-color:  var(--tg-theme-section-header-text-color, #6ab3f3);
+        --telegram-subtitle-text-color:  var(--tg-theme-subtitle-text-color, #b1c3d5);
+        --telegram-text-color: var(--tg-theme-text-color, #ffffff);
+        --telegram-hint-color: var(--tg-theme-hint-color, #707579);
+        --telegram-link-color: var(--tg-theme-link-color, #3390ec);
+        --telegram-button-color: var(--tg-theme-button-color, #2ea6ff);
+        --telegram-button-text-color: var(--tg-theme-button-text-color, #ffffff);
+    }
+    body {
+        color: var(--telegram-text-color);
+    }
+    html {
+        @apply font-sans;
+    }
 }
