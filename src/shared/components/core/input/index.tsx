@@ -1,6 +1,7 @@
 import { InputHTMLAttributes } from "react";
 import clsx from "clsx";
 import { ErrorMessage } from "@/shared/components/core/errorMessage";
+import { Label } from "@/shared/components/core/label";
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	label?: string;
@@ -15,17 +16,9 @@ export const Input = ({
 }: InputProps) => {
 	return (
 		<>
-			{label && (
-				<label
-					htmlFor={props.id}
-					className={clsx(
-						"block mb-2 text-sm font-medium text-telegram-text",
-						labelClassName
-					)}
-				>
-					{label}
-				</label>
-			)}
+			<Label className={labelClassName} id={props.id}>
+				{label}
+			</Label>
 			<input
 				type="text"
 				{...props}

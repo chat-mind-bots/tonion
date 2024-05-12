@@ -8,12 +8,10 @@ export default function StoreCreate() {
 	return (
 		<div>
 			<ContentBlock>
-				<PageTitle title={"Create store"} className={"mb-4"} />
+				<PageTitle title={"Create store"} />
 			</ContentBlock>
 			<ContentBlock>
-				<Suspense fallback={<Loader />}>
-					<CreateStore />
-				</Suspense>
+				<CreateStore />
 			</ContentBlock>
 		</div>
 	);

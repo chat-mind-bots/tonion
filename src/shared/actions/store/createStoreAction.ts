@@ -26,10 +26,12 @@ export const createStoreAction = async (
 			description: formData.get("description"),
 			skills: skills,
 		});
+
 		const store = await createStore({
 			name: formData.get("name") as string,
 			description: formData.get("description") as string,
 		});
+
 		if (validatedFields.skills && store) {
 			const skillsDto = validatedFields.skills.map((skill: string) => ({
 				title: skill,

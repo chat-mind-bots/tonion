@@ -4,8 +4,11 @@
 
 @layer base {
     :root {
+        /*constants*/
         --telegram-stable-height: var(--tg-viewport-stable-height, 100vh);
         --telegram-viewport-height: var(--tg-viewport-height, 100vh);
+
+        /*Colors*/
         --telegram-bg-color: var(--tg-theme-bg-color, #17212b);
         --telegram-secondary-bg-color: var(--tg-theme-secondary-bg-color, #ffffff);
         --telegram-accent-text-color:  var(--tg-theme-accent-text-color, #6ab2f2);

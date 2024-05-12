@@ -88,7 +88,7 @@ model Category {
   id          String                 @id @default(cuid())
   name        String
   description String
-  categories  CategoriesOnProducts[]
+  products    CategoriesOnProducts[]
   orders      CategoriesOnOrders[]
   stores      CategoriesOnStores[]
   parentId    String?

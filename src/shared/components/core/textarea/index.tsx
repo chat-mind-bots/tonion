@@ -1,6 +1,7 @@
 import { InputHTMLAttributes, TextareaHTMLAttributes } from "react";
 import clsx from "clsx";
 import { ErrorMessage } from "@/shared/components/core/errorMessage";
+import { Label } from "@/shared/components/core/label";
 
 export interface InputProps
 	extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -16,17 +17,9 @@ export const Textarea = ({
 }: InputProps) => {
 	return (
 		<>
-			{label && (
-				<label
-					htmlFor={props.id}
-					className={clsx(
-						"block mb-2 text-sm font-medium text-telegram-text",
-						labelClassName
-					)}
-				>
-					{label}
-				</label>
-			)}
+			<Label className={labelClassName} id={props.id}>
+				{label}
+			</Label>
 			<textarea
 				className={clsx(
 					"bg-colors-telegram-header-bg border border-colors-telegram-button-background-secondary text-telegram-text text-sm rounded-lg focus:ring-colors-telegram-button-background focus:border-colors-telegram-button-background block w-full p-2.5",

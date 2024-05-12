@@ -9,6 +9,25 @@ const config: Config = {
 	],
 	theme: {
 		extend: {
+			colors: {
+				"telegram-background": "var(--telegram-bg-color)",
+				"telegram-background-secondary": "var(--telegram-secondary-bg-color)",
+				"telegram-text": "var(--telegram-text-color)",
+				"telegram-hint": "var(--telegram-hint-color)",
+				"telegram-link": "var(--telegram-link-color)",
+				"telegram-button-background": "var(--telegram-button-color)",
+				"telegram-button-text": "var(--telegram-button-text-color)",
+				"telegram-button-background-secondary":
+					"var(--telegram-secondary-bg-color)",
+				"telegram-accent-text": "var(--telegram-accent-text-color)",
+
+				"telegram-destructive-text": "var(--telegram-destructive-text-color)",
+				"telegram-header-bg": "var(--telegram-header-bg-color)",
+				"telegram-section-bg": "var(--telegram-section-bg-color)",
+				"telegram-section-header-text":
+					"var(--telegram-section-header-text-color)",
+				"telegram-subtitle-text": "var(--telegram-theme-subtitle-text-color)",
+			},
 			backgroundImage: {
 				"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
 				"gradient-conic":
@@ -56,7 +75,8 @@ const config: Config = {
 			"telegram-destructive-text": "var(--telegram-destructive-text-color)",
 			"telegram-header-bg": "var(--telegram-header-bg-color)",
 			"telegram-section-bg": "var(--telegram-section-bg-color)",
-			"telegram-section-header-text": "var(--telegram-section-header-text-color)",
+			"telegram-section-header-text":
+				"var(--telegram-section-header-text-color)",
 			"telegram-subtitle-text": "var(--telegram-theme-subtitle-text-color)",
 		},
 	},

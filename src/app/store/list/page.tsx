@@ -12,7 +12,7 @@ export default function StoreList() {
 	return (
 		<div>
 			<ContentBlock>
-				<PageTitle title={"Stores list"} className={"mb-4"} />
+				<PageTitle title={"Stores list"} />
 			</ContentBlock>
 
 			<ContentBlock isBorderBottom isBorderTop>

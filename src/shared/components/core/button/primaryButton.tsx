@@ -11,6 +11,7 @@ export const PrimaryButton = (props: ButtonProps) => {
 				"rounded-full",
 				"bg-colors-telegram-button-background",
 				"text-telegram-button-text",
+				"text-sm",
 				props.className
 			)}
 		/>

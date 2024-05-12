@@ -10,7 +10,7 @@ export default function Portfolio() {
 	return (
 		<div className={"pb-[81px]"}>
 			<ContentBlock>
-				<PageTitle title={"Portfolio"} className={"mb-4"} />
+				<PageTitle title={"Portfolio"} />
 			</ContentBlock>
 
 			<ContentBlock isBorderBottom isBorderTop>

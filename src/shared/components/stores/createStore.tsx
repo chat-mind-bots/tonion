@@ -9,9 +9,9 @@ import Typography from "@/shared/components/core/typography";
 import Chip from "@/shared/components/core/chip";
 import clsx from "clsx";
 import { EMPTY_FORM_STATE } from "@/utils/toFormState";
+import { getErrorMessage } from "@/utils/getEttotMessage";
+import { useFormUtils } from "@/hooks/useFormUtils";
 import { memo, useState } from "react";
-import { ErrorMessage } from "@/shared/components/core/errorMessage";
-import { useFormReset } from "@/hooks/useFormReset";
 
 function SubmitButton() {
 	const { pending } = useFormStatus();
@@ -58,7 +58,7 @@ export const CreateStore = () => {
 	const onReset = () => {
 		setSkill({});
 	};
-	const formRef = useFormReset(state, onReset);
+
 	const handleSkillDelete = (skill: string) => {
 		setSkill((prevState) => ({
 			...prevState,
@@ -73,6 +73,8 @@ export const CreateStore = () => {
 		}
 	};
 
+	const { formRef } = useFormUtils(state, onReset);
+
 	return (
 		<form action={formAction} ref={formRef}>
 			<div className="relative mb-6">
@@ -82,11 +84,7 @@ export const CreateStore = () => {
 					id="name"
 					name={"name"}
 					placeholder="Store Name"
-					errorMessages={
-						state.fieldErrors["name"]
-							? [state.fieldErrors["name"][0]]
-							: undefined
-					}
+					errorMessages={getErrorMessage(state.fieldErrors["name"]?.[0])}
 				/>
 			</div>
 
@@ -97,11 +95,7 @@ export const CreateStore = () => {
 					rows={2}
 					name={"description"}
 					placeholder="Store Description"
-					errorMessages={
-						state.fieldErrors["description"]
-							? [state.fieldErrors["description"][0]]
-							: undefined
-					}
+					errorMessages={getErrorMessage(state.fieldErrors["description"]?.[0])}
 				/>
 			</div>
 
@@ -125,23 +119,10 @@ export const CreateStore = () => {
 						}}
 						onKeyDown={handleKeyDown}
 						placeholder="Store Skills"
-						errorMessages={
-							state.fieldErrors["skills"]
-								? [state.fieldErrors["skills"][0]]
-								: undefined
-						}
+						errorMessages={getErrorMessage(state.fieldErrors["skills"]?.[0])}
 					/>
 				</div>
 			</div>
-			{state.status === "SUCCESS" && (
-				<Typography className={"mt-2 mb-3 text-telegram-link"} variant={"h3"}>
-					Success!
-				</Typography>
-			)}
-
-			{state.status === "ERROR" && (
-				<ErrorMessage errorMessage={state.message} />
-			)}
 			<SubmitButton />
 		</form>
 	);

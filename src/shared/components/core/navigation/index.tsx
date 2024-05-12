@@ -4,8 +4,8 @@ import {
 	NavigationLinkProps,
 } from "@/shared/components/core/navigation/navigationLink";
 import clsx from "clsx";
-import { PortfolioSvg } from "@/shared/components/core/navigation/icons/portfolioIcon";
 import { useTonAddress } from "@tonconnect/ui-react";
+import { PortfolioSvg } from "@/shared/components/core/icons/portfolio.icon";
 
 export const Navigation = () => {
 	const address = useTonAddress();
@@ -48,6 +48,23 @@ export const Navigation = () => {
 			alt: "orders",
 			href: "/orders",
 			displayName: "My Orders",
+			icon: (
+				<PortfolioSvg
+					className={clsx(
+						{
+							"fill-current": true,
+						},
+						"w-[23px]",
+						"h-[23px]"
+					)}
+				/>
+			),
+			isDisabled: !address,
+		},
+		{
+			alt: "categories",
+			href: "/categories",
+			displayName: "categories",
 			icon: (
 				<PortfolioSvg
 					className={clsx(
