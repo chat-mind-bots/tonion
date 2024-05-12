@@ -15,7 +15,7 @@ import { showToast } from "@/shared/helpers/showToast";
 const schema = z.object({
 	name: z.string().min(3, "Minimum length is 3 Symbols"),
 	description: z.string(),
-	// parentId: z.string().optional(),
+	parentId: z.string().optional(),
 });
 export const createCategoryAction = async (
 	formState: FormState,
@@ -30,7 +30,7 @@ export const createCategoryAction = async (
 		const data: CreateCategoryDto = {
 			name: validatedFields.name,
 			description: validatedFields.description,
-			parentId: (formData.get("parentId") as string) ?? undefined,
+			parentId: (formData.get("parentId") as string) ?? null,
 		};
 
 		await creteCategory(data);

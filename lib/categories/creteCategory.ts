@@ -5,7 +5,7 @@ import { checkAdmin } from "../auth/checkAdmin";
 export interface CreateCategoryDto {
 	name: string;
 	description: string;
-	parentId?: string;
+	parentId: string | null;
 }
 
 export const creteCategory = async ({
@@ -22,7 +22,7 @@ export const creteCategory = async ({
 	const data: Prisma.CategoryCreateInput = {
 		name,
 		description,
-		...(parentCategory ? { parentId: parentCategory.parentId } : {}),
+		...(parentCategory ? { parentId: parentCategory.id } : {}),
 	};
 
 	const category = await prisma.category.create({ data: data });

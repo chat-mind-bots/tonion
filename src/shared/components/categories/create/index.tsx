@@ -8,7 +8,10 @@ import { getErrorMessage } from "@/utils/getEttotMessage";
 import { Textarea } from "@/shared/components/core/textarea";
 import { PrimaryButton } from "@/shared/components/core/button/primaryButton";
 import { useFormUtils } from "@/hooks/useFormUtils";
-import { useRef } from "react";
+import { Select } from "@/shared/components/core/select";
+import { Suspense } from "react";
+import { Loader } from "@/shared/components/core/loader";
+import { CategoriesSelect } from "@/shared/components/categories/create/categoriesSelect";
 
 function SubmitButton() {
 	const { pending } = useFormStatus();
@@ -45,9 +48,20 @@ export const CategoryCreate = () => {
 					id={"description"}
 					name={"description"}
 					placeholder={"Enter category description"}
-					errorMessages={getErrorMessage(state.fieldErrors["name"]?.[0])}
+					errorMessages={getErrorMessage(state.fieldErrors["description"]?.[0])}
 				/>
 			</div>
+			<Suspense fallback={<Loader />}>
+				<CategoriesSelect state={state} />
+			</Suspense>
+			{/*<div className={"relative mb-6"}>*/}
+			{/*	<Select*/}
+			{/*		label={"Category description"}*/}
+			{/*		id={"description"}*/}
+			{/*		name={"description"}*/}
+			{/*		errorMessages={getErrorMessage(state.fieldErrors["name"]?.[0])}*/}
+			{/*	/>*/}
+			{/*</div>*/}
 			<div>
 				<SubmitButton />
 			</div>

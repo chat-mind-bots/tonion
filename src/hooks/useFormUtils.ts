@@ -1,5 +1,5 @@
 import { FormState } from "@/utils/toFormState";
-import { RefObject, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { showToast } from "@/shared/helpers/showToast";
 
 export const useFormUtils = (state: FormState, resetHandler?: () => void) => {

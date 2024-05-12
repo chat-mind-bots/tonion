@@ -4,8 +4,8 @@ import {
 	NavigationLinkProps,
 } from "@/shared/components/core/navigation/navigationLink";
 import clsx from "clsx";
-import { PortfolioSvg } from "@/shared/components/core/navigation/icons/portfolioIcon";
 import { useTonAddress } from "@tonconnect/ui-react";
+import { PortfolioSvg } from "@/shared/components/core/icons/portfolio.icon";
 
 export const Navigation = () => {
 	const address = useTonAddress();
