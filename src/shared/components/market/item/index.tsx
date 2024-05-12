@@ -3,13 +3,20 @@ import clsx from "clsx";
 import Button from "@/shared/components/core/button";
 import Typography from "@/shared/components/core/typography";
 import { DynamicPng } from "@/shared/components/core/image/dynamic-png";
+import Link from "next/link";
 
 interface MarketItemProps {
 	title: string;
+	editLink?: string;
 	description?: string;
-	skills?: string[]
+	skills?: string[];
 }
-const MarketItem = ({ title, description, skills }: MarketItemProps) => {
+const MarketItem = ({
+	title,
+	description,
+	skills,
+	editLink,
+}: MarketItemProps) => {
 	return (
 		<div
 			className={clsx(
@@ -31,10 +38,19 @@ const MarketItem = ({ title, description, skills }: MarketItemProps) => {
 						{title}
 					</Typography>
 					<Typography>{description}</Typography>
-					{skills && skills.length > 0 &&  <Typography>Skills: {skills.join(" ")}</Typography>}
+					{skills && skills.length > 0 && (
+						<Typography>Skills: {skills.join(" ")}</Typography>
+					)}
 				</div>
 			</div>
-			<Button>Open</Button>
+			<div className={clsx("flex gap-2")}>
+				<Button>Open</Button>
+				{editLink && (
+					<Button>
+						<Link href={editLink}>Edit</Link>
+					</Button>
+				)}
+			</div>
 		</div>
 	);
 };

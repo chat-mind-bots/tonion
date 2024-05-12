@@ -5,6 +5,7 @@ export type FormState = {
 	message: string;
 	fieldErrors: Record<string, string[] | undefined>;
 	timestamp: number;
+	initialValues?: any;
 };
 
 export const EMPTY_FORM_STATE: FormState = {

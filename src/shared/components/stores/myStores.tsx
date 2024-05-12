@@ -24,6 +24,7 @@ export const MyStores = async ({ limit }: MyStoresProps) => {
 						title={store.name}
 						description={store.description}
 						skills={store.skills.map((item) => item.title)}
+						editLink={`/store/${store.id}/edit`}
 					/>
 				</div>
 			))}
