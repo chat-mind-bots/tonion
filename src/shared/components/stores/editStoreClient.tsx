@@ -1,20 +1,17 @@
 "use client";
 
-import React, { memo, useState, useActionState, useEffect } from "react";
+import React, { memo, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { PrimaryButton } from "@/shared/components/core/button/primaryButton";
-import { Prisma, Skill, Store } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import clsx from "clsx";
 import Chip from "@/shared/components/core/chip";
 import { Input } from "@/shared/components/core/input";
 import { getErrorMessage } from "@/utils/getEttotMessage";
 import { Textarea } from "@/shared/components/core/textarea";
 import Typography from "@/shared/components/core/typography";
-import { createStoreAction } from "@/shared/actions/store/createStoreAction";
 import { EMPTY_FORM_STATE } from "@/utils/toFormState";
-import SkillGetPayload = Prisma.SkillGetPayload;
 import StoreGetPayload = Prisma.StoreGetPayload;
-import SkillScalarFieldEnum = Prisma.SkillScalarFieldEnum;
 import { editStoreAction } from "@/shared/actions/store/editStoreAction";
 
 function SubmitButton() {
@@ -71,10 +68,6 @@ export const EditStoreClient = ({
 		),
 		EMPTY_FORM_STATE
 	);
-
-	const onReset = () => {
-		setSkill({});
-	};
 
 	const handleSkillDelete = (skill: string) => {
 		setSkill((prevState) => ({
