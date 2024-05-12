@@ -1,28 +1,28 @@
-import { CategoriesList } from "@/shared/components/categories/list";
 import { PageTitle } from "@/shared/components/core/pageTitle";
 import { ContentBlock } from "@/shared/components/core/contentBlock";
-import { Loader } from "@/shared/components/core/loader";
+import { Category } from "@/shared/components/categories/category";
 import { Suspense } from "react";
-import { PrimaryButton } from "@/shared/components/core/button/primaryButton";
-import Link from "next/link";
+import { Loader } from "@/shared/components/core/loader";
 import clsx from "clsx";
+import Link from "next/link";
+import { PrimaryButton } from "@/shared/components/core/button/primaryButton";
 
-export default function Categories() {
+export default function CategoryPage({ params }: { params: { id: string } }) {
 	return (
 		<div className={"pb-[81px]"}>
 			<ContentBlock>
 				<PageTitle
-					title={"Categories"}
+					title={`Category`}
 					actions={
 						<PrimaryButton className={clsx("py-1", "px-2", "text-sm")}>
-							<Link href={"/categories/create"}>+ Create Category</Link>
+							<Link href={`/categories/${params.id}/edit`}>Edit Category</Link>
 						</PrimaryButton>
 					}
 				/>
 			</ContentBlock>
 			<ContentBlock isBorderBottom isBorderTop>
 				<Suspense fallback={<Loader />}>
-					<CategoriesList />
+					<Category id={params.id} />
 				</Suspense>
 			</ContentBlock>
 		</div>

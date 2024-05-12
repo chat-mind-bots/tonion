@@ -8,7 +8,7 @@ export default function CategoriesCreate() {
 	return (
 		<div className={"pb-[81px]"}>
 			<ContentBlock>
-				<PageTitle title={"Create category"} className={"mb-4"} />
+				<PageTitle title={"Create category"} />
 			</ContentBlock>
 			<ContentBlock>
 				<Suspense fallback={<Loader />}>

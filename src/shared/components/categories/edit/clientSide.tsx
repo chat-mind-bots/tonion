@@ -1,6 +1,5 @@
 "use client";
 
-import { createCategoryAction } from "@/shared/actions/categories/createCategoryAction";
 import { useFormState, useFormStatus } from "react-dom";
 import { EMPTY_FORM_STATE } from "@/utils/toFormState";
 import { Input } from "@/shared/components/core/input";
@@ -8,10 +7,11 @@ import { getErrorMessage } from "@/utils/getEttotMessage";
 import { Textarea } from "@/shared/components/core/textarea";
 import { PrimaryButton } from "@/shared/components/core/button/primaryButton";
 import { useFormUtils } from "@/hooks/useFormUtils";
-import { Select } from "@/shared/components/core/select";
 import { Suspense } from "react";
 import { Loader } from "@/shared/components/core/loader";
 import { CategoriesSelect } from "@/shared/components/categories/create/categoriesSelect";
+import { Category } from "@prisma/client";
+import { updateCategoryAction } from "@/shared/actions/categories/updateCategoryAction";
 
 function SubmitButton() {
 	const { pending } = useFormStatus();
@@ -23,9 +23,9 @@ function SubmitButton() {
 	);
 }
 
-export const CategoryCreate = () => {
+export const CategoryEditClient = ({ category }: { category: Category }) => {
 	const [state, formAction] = useFormState(
-		createCategoryAction,
+		updateCategoryAction.bind(null, category.id),
 		EMPTY_FORM_STATE
 	);
 
@@ -38,6 +38,7 @@ export const CategoryCreate = () => {
 					label={"Category name"}
 					id={"name"}
 					name={"name"}
+					defaultValue={category.name}
 					placeholder={"Enter category name"}
 					errorMessages={getErrorMessage(state.fieldErrors["name"]?.[0])}
 				/>
@@ -47,12 +48,16 @@ export const CategoryCreate = () => {
 					label={"Category description"}
 					id={"description"}
 					name={"description"}
+					defaultValue={category.description}
 					placeholder={"Enter category description"}
 					errorMessages={getErrorMessage(state.fieldErrors["description"]?.[0])}
 				/>
 			</div>
 			<Suspense fallback={<Loader />}>
-				<CategoriesSelect state={state} />
+				<CategoriesSelect
+					state={state}
+					defaultValue={category.parentId ?? undefined}
+				/>
 			</Suspense>
 			<div>
 				<SubmitButton />

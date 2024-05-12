@@ -1,12 +1,12 @@
 "use client";
 
-import { FC, PropsWithChildren, useState } from "react";
+import { FC, PropsWithChildren, ReactNode, useState } from "react";
 import { ArrowIcon } from "@/shared/components/core/icons/arrow.icon";
 import clsx from "clsx";
 
 interface TreeViewItemProps {
 	itemId: string;
-	label: string;
+	label: ReactNode;
 	initialState?: boolean;
 }
 
@@ -33,7 +33,13 @@ export const TreeViewItem: FC<PropsWithChildren<TreeViewItemProps>> = ({
 						})}
 					/>
 				)}
-				<p>{label}</p>
+				<p
+					onClick={(e) => {
+						e.stopPropagation();
+					}}
+				>
+					{label}
+				</p>
 			</div>
 			{isOpen && !!children && children}
 		</div>

@@ -7,6 +7,7 @@ import { FormState } from "@/utils/toFormState";
 
 interface CategoriesSelectProps {
 	state: FormState;
+	defaultValue?: string;
 }
 export const CategoriesSelect = async (props: CategoriesSelectProps) => {
 	const defaultOption: IOption = { value: null, displayValue: "-" };
@@ -24,6 +25,7 @@ export const CategoriesSelect = async (props: CategoriesSelectProps) => {
 				id={"parentId"}
 				name={"parentId"}
 				options={options}
+				defaultValue={props?.defaultValue}
 				errorMessages={getErrorMessage(
 					props?.state?.fieldErrors["parentId"]?.[0]
 				)}

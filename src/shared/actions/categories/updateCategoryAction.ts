@@ -1,16 +1,13 @@
 "use server";
 
-import { z, ZodError } from "zod";
-import {
-	CreateCategoryDto,
-	creteCategory,
-} from "../../../../lib/categories/creteCategory";
+import { updateCategory } from "../../../../lib/categories/updateCategory";
+import { z } from "zod";
+import { CreateCategoryDto } from "../../../../lib/categories/creteCategory";
 import {
 	FormState,
 	fromErrorToFormState,
 	toFormState,
 } from "@/utils/toFormState";
-import { showToast } from "@/shared/helpers/showToast";
 
 const schema = z.object({
 	name: z.string().min(3, "Minimum length is 3 Symbols"),
@@ -18,7 +15,8 @@ const schema = z.object({
 	parentId: z.string().optional(),
 });
 
-export const createCategoryAction = async (
+export const updateCategoryAction = async (
+	id: string,
 	formState: FormState,
 	formData: FormData
 ) => {
@@ -28,15 +26,19 @@ export const createCategoryAction = async (
 			description: formData.get("description"),
 		});
 
-		const data: CreateCategoryDto = {
+		const data: Partial<CreateCategoryDto> = {
 			name: validatedFields.name,
 			description: validatedFields.description,
 			parentId: (formData.get("parentId") as string) ?? null,
 		};
 
-		await creteCategory(data);
+		await updateCategory({
+			id,
+			...data,
+			parentId: data.parentId === "-" ? null : data.parentId,
+		});
 
-		return toFormState("SUCCESS", "Category created");
+		return toFormState("SUCCESS", "Category updated");
 	} catch (error) {
 		return fromErrorToFormState(error);
 	}

@@ -9,7 +9,6 @@ export interface IOption {
 
 export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 	options: IOption[];
-	// selectedOption?: IOption["value"];
 	label?: string;
 	labelClassName?: string;
 	errorMessages?: string[];
@@ -20,7 +19,6 @@ export const Select = ({
 	labelClassName,
 	errorMessages,
 	options,
-	// selectedOption,
 	...props
 }: SelectProps) => {
 	return (
