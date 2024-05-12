@@ -99,6 +99,7 @@ export const EditStoreClient = ({
 						className="bg-colors-telegram-header-bg border border-colors-telegram-button-background-secondary text-telegram-text text-sm rounded-lg focus:ring-colors-telegram-button-background focus:border-colors-telegram-button-background block w-full p-2.5"
 						id="name"
 						name={"name"}
+						defaultValue={store.name}
 						placeholder="Store Name"
 						errorMessages={getErrorMessage(state.fieldErrors["name"]?.[0])}
 					/>
@@ -110,6 +111,7 @@ export const EditStoreClient = ({
 						id="description"
 						rows={2}
 						name={"description"}
+						defaultValue={store.description}
 						placeholder="Store Description"
 						errorMessages={getErrorMessage(
 							state.fieldErrors["description"]?.[0]
